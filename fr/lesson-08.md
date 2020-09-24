@@ -4,14 +4,24 @@ title: "Les tableaux"
 
 ## Tableaux simples
 
-En LaTeX, un tableau se construit dans un environnement `tabular`. Cette leçon suppose que vous chargez le package `array`, qui ajoute des fonctionnalités aux tableaux LaTeX. Il n'est pas intégré dans le noyau LaTeX, mais c'est uniquement pour des raisons historiques et vous avez intérêt à le charger dès que vous utilisez des tableaux. Mettez donc ce qui suit dans votre préambule et nous sommes prêts à commencer :
+En LaTeX, un tableau se construit dans un environnement `tabular`. Cette leçon
+suppose que vous chargez le package `array`, qui ajoute des fonctionnalités aux
+tableaux de base de LaTeX. Il n'est pas intégré dans le noyau LaTeX, mais c'est
+uniquement pour des raisons historiques et vous avez intérêt à le charger dès
+que vous utilisez des tableaux. Mettez donc ce qui suit dans votre préambule et
+nous serons prêts à commencer :
 
 ```latex
 \usepackage{array}
 ```
 {: .noedit :}
 
-Pour composer un tableau dans un environnement `tabular`, nous devons indiquer à LaTeX combien de colonnes seront nécessaires et comment elles doivent être alignées. Cela se fait dans un argument obligatoire de l'environnement &ndash; souvent appelé _préambule_ du tableau &ndash; dans lequel vous spécifiez les colonnes en utilisant des noms à une lettre (les _preamble-tokens_). Les types de colonnes disponibles sont les suivants :
+Pour composer un tableau dans un environnement `tabular`, nous devons indiquer
+à LaTeX combien de colonnes seront nécessaires et comment elles doivent être
+alignées. Cela se fait dans un argument obligatoire de l'environnement &ndash;
+souvent appelé _préambule_ du tableau &ndash; dans lequel vous spécifiez les
+colonnes en utilisant des noms à une lettre (les _preamble-tokens_). Les types
+de colonnes disponibles sont les suivants :
 
 <!-- Don't line wrap this table, markdown seems to not support this. -->
 
@@ -20,33 +30,44 @@ Pour composer un tableau dans un environnement `tabular`, nous devons indiquer �
 | `l`        | colonne alignée à gauche (_**l**eft_). |
 | `c`        | colonne centrée (_**c**entered_). |
 | `r`        | colonne alignée à droite (_**r**ight_). |
-| `p{width}` | colonne de largeur fixée, égale à `width`; le texte sera automatiquement justifié, avec des saurs de lignes si nécessaire. |
-| `m{width}` | comme `p`, mais centré verticalement par rapport au reste de la ligne. |
-| `b{width}` | comme `p`, mais positionné en bas par rapport au reste de la ligne. |
+| `p{width}` | colonne de largeur fixée, égale à `width` ; le texte sera automatiquement justifié, avec des sauts de lignes si nécessaire. |
+| `m{width}` | comme `p`, mais centré verticalement par rapport au reste de la ligne (_**m**iddle_). |
+| `b{width}` | comme `p`, mais positionné en bas par rapport au reste de la ligne (_**b**ottom_). |
 | `w{align}{width}` | fixe la largeur de la colonne à `width`, mais le contenu peut déborder s'il est trop grand. L'alignement horizontal `align` peut être `l`, `c`, or `r`, comme décrit ci-dessus. |
-| `W{align}{width}` | comme `w`, mais vous aurez un avertissement en ca de débordement. |
+| `W{align}{width}` | comme `w`, mais vous aurez un avertissement en cas de débordement. |
 
 
-En outre, il existe quelques autres _preamble-tokens_ qui ne définissent pas une colonne mais s'avèrent utiles :
+En outre, il existe quelques autres _preamble-tokens_ qui ne définissent pas une
+colonne mais s'avèrent utiles :
 
 <!-- Don't line wrap this table, markdown seems to not support this. -->
 
 | type | description |
 | ---  | :-- |
-| `*{num}{string}` | répète `num`  fois la chaîne `string` dans le préambule. Permet de définir plusieurs colonnes identiques. |
+| `*{num}{string}` | répète `num` fois la chaîne `string` dans le préambule. Permet de définir plusieurs colonnes identiques. |
 | `>{decl}` | ajoute la chaîne `decl` devant le contenu de chaque cellule de la colonne qui suit (permet par exemple de changer la police de cette colonne). |
 | `<{decl}` | ajoute la chaîne `decl` après le contenu de chaque cellule de la colonne qui précède. |
 | <span>`|`</span>  | trace un trait vertical. |
 | `@{decl}` | remplace l'espace entre deux colonne par la chaîne `decl`. |
 | `!{decl}` | ajout la chaîne `decl` au centre de l'espace entre deux colonnes. |
 
-Ces deux tableaux répertorient tous les types de colonnes disponibles avec LaTeX et le package `array`. Quelques types de colonnes supplémentaires, provenant d'autres paquets, sont présentés [en approfondissement](more-08) de cette leçon.
+Ces deux tableaux répertorient tous les types de colonnes disponibles avec LaTeX
+et le package `array`. Quelques types de colonnes supplémentaires, provenant
+d'autres packages, sont présentés [en approfondissement](more-08) de cette leçon.
 
-Les colonnes `l`, `c` et `r` auront la largeur naturelle de la cellule la plus large. Chaque colonne doit être déclarée, donc si vous voulez trois colonnes centrées, vous utiliserez `ccc` dans le préambule du tableau. Les espaces sont ignorées, donc `c c c` donne la même chose.
+Les colonnes `l`, `c` et `r` auront la largeur naturelle de la cellule la plus
+large. Chaque colonne doit être déclarée, donc si vous voulez trois colonnes
+centrées, vous utiliserez `ccc` dans le préambule du tableau. Les espaces sont
+ignorées, et `c c c` donne la même chose.
 
-Dans le corps du tableau, les colonnes sont séparées par une esperluette `&` et une nouvelle ligne est commencée avec `\\`. Il n'y a pas besoin de déclarer à l'avance le nombre de lignes du tableau.
+Dans le corps du tableau, les colonnes sont séparées par une esperluette `&` et
+une nouvelle ligne est commencée avec `\\`. Il n'y a pas besoin de déclarer à
+l'avance le nombre de lignes du tableau.
 
-Nous avons maintenant tout ce qu'il faut pour construire notre première table. Dans le code suivant, les `&` et `\\` sont alignés. Ce n'est pas nécessaire en LaTeX, mais ça aide à lire le code source et à trouver les erreurs éventuelles.
+Nous avons maintenant tout ce qu'il faut pour construire notre premier tableau.
+Dans le code suivant, les `&` et `\\` sont alignés. Ce n'est pas nécessaire en
+LaTeX, mais ça aide à lire le code source et à débusquer les erreurs
+éventuelles.
 
 <!-- {% raw %} -->
 ```latex
@@ -56,16 +77,17 @@ Nous avons maintenant tout ce qu'il faut pour construire notre première table. 
 
 \begin{document}
 \begin{tabular}{lll}
-  Animal & Food  & Size   \\
-  dog    & meat  & medium \\
-  horse  & hay   & large  \\
-  frog   & flies & small  \\
+  Animal     & Nourriture & Taille \\
+  chien      & viande     & moyen  \\
+  cheval     & foin       & gros   \\
+  grenouille & mouches    & petit  \\
 \end{tabular}
 \end{document}
 ```
 <!-- {% endraw %} -->
 
-Si une colonne de tableau contient beaucoup de texte, vous aurez du mal à avoir un beau résultat avec seulement `l`, `c` et `r`. Regardez l'exemple suivant :
+Si une colonne de tableau contient beaucoup de texte, vous aurez du mal à avoir
+un joli résultat avec seulement `l`, `c` et `r`. Regardez l'exemple suivant :
 
 <!-- {% raw %} -->
 ```latex
@@ -88,7 +110,12 @@ Si une colonne de tableau contient beaucoup de texte, vous aurez du mal à avoir
 ```
 <!-- {% endraw %} -->
 
-Le problème est qu'une colonne de type `l` déroule son contenu sur une seule ligne, et prend sa largeur naturelle, même si la page n'est pas assez large. Pour résoudre ce problème, vous pouvez utiliser une colonne de type `p`. Celle-ci met son contenu sous forme de paragraphes avec la largeur que vous spécifiez, et aligne ces paragraphe verticalement en haut et en bas. Comparez le résultat de ce nouvel exemple avec le précédent :
+Le problème est qu'une colonne de type `l` déroule son contenu sur une seule
+ligne, et prend sa largeur naturelle, même si la page n'est pas assez large.
+Pour résoudre ce problème, vous pouvez utiliser une colonne de type `p`.
+Celle-ci met son contenu sous forme d'un paragraphe avec la largeur que vous
+spécifiez, et aligne ce paragraphe verticalement en haut et en bas. Comparez
+le résultat de ce nouvel exemple avec le précédent :
 
 <!-- {% raw %} -->
 ```latex
@@ -111,7 +138,11 @@ Le problème est qu'une colonne de type `l` déroule son contenu sur une seule l
 ```
 <!-- {% endraw %} -->
 
-Si votre tableau comporte de nombreuses colonnes du même type, vous pouvez vous faciliter la viee en utilisant `*{nombre}{chaîne}`, qui répète `nombre` de fois la `chaîne`. Ainsi, `*{6}{c}` est équivalent à `cccccc`. Pour vous montrer que cela fonctionne, voici le premier tableau de cette leçon avec cette nouvelle syntaxe :
+Si votre tableau comporte de nombreuses colonnes du même type, vous pouvez vous
+faciliter la vie en utilisant `*{nombre}{chaîne}`, qui répète `nombre` de fois
+la `chaîne`. Ainsi, `*{6}{c}` est équivalent à `cccccc`. Pour vous montrer que
+cela fonctionne, voici le premier tableau de cette leçon avec cette nouvelle
+syntaxe :
 
 <!-- {% raw %} -->
 ```latex
@@ -121,10 +152,10 @@ Si votre tableau comporte de nombreuses colonnes du même type, vous pouvez vous
 
 \begin{document}
 \begin{tabular}{*{3}{l}}
-  Animal & Food  & Size   \\
-  dog    & meat  & medium \\
-  horse  & hay   & large  \\
-  frog   & flies & small  \\
+  Animal     & Nourriture & Taille \\
+  chien      & viande     & moyen  \\
+  cheval     & foin       & gros   \\
+  grenouille & mouches    & petit  \\
 \end{tabular}
 \end{document}
 ```
@@ -133,14 +164,18 @@ Si votre tableau comporte de nombreuses colonnes du même type, vous pouvez vous
 
 ## Tirer des traits entre les lignes
 
-Un conseil avant de parler des traits : ceux-ci doivent être utilisés parcimonieusement dans les tableaux, et de façon générale, les traits verticaux donnent un rendu peu professionnel. En fait, pour obtenir des  tableaux au look professionnel, il vaut mieux se passer des traits fournis en standard par LaTeX, et utiliser à la place le package `booktabs`. C'est pourquoi nous en parlons en premier lieu. Par souci d'exhaustivité, les lignes standards sont [présentées en approfondissement](more-08).
+Un conseil avant de parler des traits (ou _filets_) : ceux-ci doivent être
+utilisés parcimonieusement dans les tableaux, et de façon générale, les filets
+verticaux donnent un rendu peu professionnel. En fait, pour obtenir des tableaux
+au look professionnel, il vaut mieux se passer des filets fournis en standard
+par LaTeX, et utiliser à la place le package `booktabs`. C'est pourquoi nous en
+parlons en premier lieu. Dans un souci d'exhaustivité, les filets standards sont
+[présentées en approfondissement](more-08).
 
-`booktabs` provides four different types of lines. Each of those commands has to
-be used as the first thing in a row or following another rule.
-Three of the rule commands are: `\toprule`, `\midrule`, and
-`\bottomrule`. From their names the intended place of use should be clear:
-
-Le package `booktabs` propose quatre types de traits différents. Chacune de ces commandes doit être utilisée au début d'une ligne, ou juste après un autre trait. Les trois principales commandes sont : `\toprule` (pour le haut du tableau), `\midrule` (pour le corps du tableau) et `\bottomrule` (pour le bas du tableau) :
+Le package `booktabs` propose quatre types de filets différents. Chacune de ces
+commandes doit être utilisée au début d'une ligne, ou juste après un autre filet.
+Les trois principales commandes sont : `\toprule` (pour le haut du tableau),
+`\midrule` (pour le corps du tableau) et `\bottomrule` (pour le bas du tableau) :
 
 <!-- {% raw %} -->
 ```latex
@@ -152,18 +187,24 @@ Le package `booktabs` propose quatre types de traits différents. Chacune de ces
 \begin{document}
 \begin{tabular}{lll}
   \toprule
-  Animal & Food  & Size   \\
+  Animal     & Nourriture & Taille \\
   \midrule
-  dog    & meat  & medium \\
-  horse  & hay   & large  \\
-  frog   & flies & small  \\
+  chien      & viande     & moyen  \\
+  cheval     & foin       & gros   \\
+  grenouille & mouches    & petit  \\
   \bottomrule
 \end{tabular}
 \end{document}
 ```
 <!-- {% endraw %} -->
 
-La quatrième commande fournie par `booktabs` pour tracer des traits est `\cmidrule`. Elle peut être utilisée pour tirer un trait qui ne couvre pas toute la largeur du tableau mais seulement une plage de colonnes spécifiée. La plage de colonnes est entrée comme une plage de numéros de colonnes : `{`_numéro_`-`_numéro_`}`. Même si vous ne voulez dessiner le trait que pour une seule colonne, vous devez la spécifier comme une plage (avec deux numéros identiques: `{2-2}`).
+La quatrième commande fournie par `booktabs` pour tracer des filets est
+`\cmidrule`. Elle peut être utilisée pour tracer un filet qui ne couvre pas
+toute la largeur du tableau mais seulement une plage de colonnes spécifiée.
+La plage de colonnes est entrée avec les numéros des colonnes :
+`{`_numéro_`-`_numéro_`}`. Même si vous ne voulez dessiner le filet que pour
+une seule colonne, vous devez la spécifier comme une plage (avec deux numéros
+identiques : `{2-2}`).
 
 <!-- {% raw %} -->
 ```latex
@@ -175,14 +216,14 @@ La quatrième commande fournie par `booktabs` pour tracer des traits est `\cmidr
 \begin{document}
 \begin{tabular}{lll}
   \toprule
-  Animal & Food  & Size   \\
+  Animal     & Nourriture & Taille \\
   \midrule
-  dog    & meat  & medium \\
+  chien      & viande     & moyen  \\
   \cmidrule{1-2}
-  horse  & hay   & large  \\
+  cheval     & foin       & gros   \\
   \cmidrule{1-1}
   \cmidrule{3-3}
-  frog   & flies & small  \\
+  grenouille & mouches    & petit  \\
   \bottomrule
 \end{tabular}
 \end{document}
@@ -190,7 +231,9 @@ La quatrième commande fournie par `booktabs` pour tracer des traits est `\cmidr
 <!-- {% endraw %} -->
 
 
-Il existe une autre fonctionnalité de `\cmidrule` qui contribue à un rendu de qualité: on peut raccourcir le trait à chaque extrémité avec un argument optionnel entre parenthèses :
+Il existe une autre fonctionnalité de `\cmidrule` qui contribue à un rendu de
+qualité: on peut raccourcir le filet à chaque extrémité avec un argument
+optionnel entre parenthèses :
 
 <!-- {% raw %} -->
 ```latex
@@ -202,24 +245,28 @@ Il existe une autre fonctionnalité de `\cmidrule` qui contribue à un rendu de 
 \begin{document}
 \begin{tabular}{lll}
   \toprule
-  Animal & Food  & Size   \\
+  Animal     & Nourriture & Taille \\
   \midrule
-  dog    & meat  & medium \\
+  chien      & viande     & moyen  \\
   \cmidrule{1-2}
-  horse  & hay   & large  \\
+  cheval     & foin       & gros   \\
   \cmidrule(r){1-1}
   \cmidrule(rl){2-2}
   \cmidrule(l){3-3}
-  frog   & flies & small  \\
+  grenouille & mouches    & petit  \\
   \bottomrule
 \end{tabular}
 \end{document}
 ```
 <!-- {% endraw %} -->
 
-Vous avez sans doute deviné que `r` et `l` signifient que le trait est raccourci à son extrémité droite (_**r**ight_) et  gauche (_**l**eft_), respectivement.
+Vous avez sans doute deviné que `r` et `l` signifient que le filet est raccourci
+à son extrémité droite (_**r**ight_) et  gauche (_**l**eft_), respectivement.
 
-Parfois, un trait serait une séparation trop forte entre deux lignes, mais vous souhaitez quand même ajouter une forme de séparation pour aider à la lecture du tableau. Dans ce cas, vous pouvez utiliser `\addlinespace` pour insérer un petit peu plus d'espace entre les lignes.
+Parfois, un trait serait une séparation trop forte entre deux lignes, mais vous
+souhaitez quand même ajouter une forme de séparation pour aider à la lecture du
+tableau. Dans ce cas, vous pouvez utiliser `\addlinespace` pour insérer un petit
+peu plus d'espace entre les lignes.
 
 <!-- {% raw %} -->
 ```latex
@@ -250,13 +297,16 @@ Parfois, un trait serait une séparation trop forte entre deux lignes, mais vous
 
 ## Fusionner des cellules
 
-En LaTeX, vous pouvez fusionner des cellules horizontalement en utilisant la commande `\multicolumn`. Elle doit apparaître en premier dans une cellule. `\multicolumn` prend trois arguments :
+En LaTeX, vous pouvez fusionner des cellules horizontalement en utilisant la
+commande `\multicolumn`. Elle doit apparaître en premier dans une cellule.
+`\multicolumn` prend trois arguments :
 
 1. Le nombre de cellules à fusionner,
 2. L'alignement de la cellule résultante,
 3. Le contenu de la cellule résultante.
 
-L'alignement peut contenir tout ce qui est autorisé dans le préambule d'un tableau, mais _seulement un seul type de colonne_:
+L'alignement peut contenir tout ce qui est autorisé dans le préambule d'un
+tableau, mais _seulement un seul type de colonne_:
 
 <!-- {% raw %} -->
 ```latex
@@ -268,12 +318,12 @@ L'alignement peut contenir tout ce qui est autorisé dans le préambule d'un tab
 \begin{document}
 \begin{tabular}{lll}
   \toprule
-  Animal & Food  & Size   \\
+  Animal     & Nourriture & Taille \\
   \midrule
-  dog    & meat  & medium \\
-  horse  & hay   & large  \\
-  frog   & flies & small  \\
-  fuath  & \multicolumn{2}{c}{unknown} \\
+  chien      & viande     & moyen  \\
+  cheval     & foin       & gros   \\
+  grenouille & mouches    & petit  \\
+  snark      & \multicolumn{2}{c}{unknown} \\
   \bottomrule
 \end{tabular}
 \end{document}
@@ -281,7 +331,10 @@ L'alignement peut contenir tout ce qui est autorisé dans le préambule d'un tab
 <!-- {% endraw %} -->
 
 
-Vous pouvez également utiliser `\multicolumn` sur une seule cellule pour empêcher l'application de ce que vous avez défini dans le préambule du tableau pour la colonne actuelle.  L'exemple suivant utilise cette méthode pour centrer la ligne d'en-tête du tableau :
+Vous pouvez également utiliser `\multicolumn` sur une seule cellule pour empêcher
+l'application de ce que vous avez défini dans le préambule du tableau pour la
+colonne actuelle.  L'exemple suivant utilise cette méthode pour centrer la ligne
+d'en-tête du tableau :
 
 <!-- {% raw %} -->
 ```latex
@@ -293,12 +346,12 @@ Vous pouvez également utiliser `\multicolumn` sur une seule cellule pour empêc
 \begin{document}
 \begin{tabular}{lll}
   \toprule
-  \multicolumn{1}{c}{Animal} & \multicolumn{1}{c}{Food} & \multicolumn{1}{c}{Size} \\
+  \multicolumn{1}{c}{Animal} & \multicolumn{1}{c}{Nourriture} & \multicolumn{1}{c}{Taille} \\
   \midrule
-  dog    & meat  & medium \\
-  horse  & hay   & large  \\
-  frog   & flies & small  \\
-  fuath  & \multicolumn{2}{c}{unknown} \\
+  chien      & viande     & moyen  \\
+  cheval     & foin       & gros   \\
+  grenouille & mouches    & petit  \\
+  snark      & \multicolumn{2}{c}{unknown} \\
   \bottomrule
 \end{tabular}
 \end{document}
@@ -306,7 +359,10 @@ Vous pouvez également utiliser `\multicolumn` sur une seule cellule pour empêc
 <!-- {% endraw %} -->
 
 
-La fusion verticale des cellules n'est pas prise en charge par LaTeX. En général, il suffit de laisser les cellules vides pour donner au lecteur une idée correcte de ce que l'on veut dire, sans que les cellules s'étendent réellement sur plusieurs lignes.
+La fusion verticale des cellules n'est pas prise en charge par LaTeX. En général,
+il suffit de laisser les cellules vides pour donner au lecteur une idée correcte
+de ce que l'on veut dire, sans que les cellules s'étendent réellement sur
+plusieurs lignes.
 
 <!-- {% raw %} -->
 ```latex
@@ -318,19 +374,19 @@ La fusion verticale des cellules n'est pas prise en charge par LaTeX. En génér
 \begin{document}
 \begin{tabular}{lll}
   \toprule
-  Group     & Animal & Size   \\
+  Groupe    & Animal    & Taille \\
   \midrule
-  herbivore & horse  & large  \\
-            & deer   & medium \\
-            & rabbit & small  \\
+  herbivore & cheval    & large  \\
+            & chevreuil & medium \\
+            & lapin     & small  \\
   \addlinespace
-  carnivore & dog    & medium \\
-            & cat    & small  \\
-            & lion   & large  \\
+  carnivore & chien     & medium \\
+            & chat      & small  \\
+            & lion      & large  \\
   \addlinespace
-  omnivore  & crow   & small  \\
-            & bear   & large  \\
-            & pig    & medium \\
+  omnivore  & corneille & small  \\
+            & ours      & large  \\
+            & cochon    & medium \\
   \bottomrule
 \end{tabular}
 \end{document}
@@ -340,4 +396,8 @@ La fusion verticale des cellules n'est pas prise en charge par LaTeX. En génér
 
 ## Travaux pratiques
 
-Utilisez le premier exemple ci-dessus pour expérimenter avec les tableaux. Essayez différents alignements en utilisant les types de colonnes `l`, `c` et `r`. Que se passe-t-il si vous avez trop peu d'éléments dans une ligne de tableau ? Et si vous en avez trop ? Essayez la commande `\multicolumn` pour étendre le contenu sur plusieurs colonnes.
+Utilisez le premier exemple ci-dessus pour expérimenter avec les tableaux.
+Essayez différents alignements en utilisant les types de colonnes `l`, `c`
+et `r`. Que se passe-t-il si vous avez trop peu d'éléments dans une ligne
+de tableau ? Et si vous en avez trop ? Essayez la commande `\multicolumn`
+pour étendre le contenu sur plusieurs colonnes.
