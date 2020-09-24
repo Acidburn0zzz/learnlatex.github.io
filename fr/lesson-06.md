@@ -1,5 +1,5 @@
 ---
-title: "Étendre les possibilités de LaTeX avec des packages"
+title: "Étendre les possibilités de LaTeX avec des packages et des définitions"
 ---
 
 Après avoir déclaré une classe, dans le préambule, vous pouvez modifier les
@@ -92,12 +92,67 @@ Texte de la seconde section.
 Observez le rendu avec et sans le package `geometry`.
 
 
-## Ajouter des commandes
+## Ajouter de nouvelles fonctionnalités
 
 L'un des points forts de LaTeX est que vous avez des milliers de packages à
 votre disposition, notamment pour la rédaction de textes mathématiques, pour
 les hyperliens, pour l'utilisation avancée de la couleur, etc. Nous verrons
 quelques packages courants dans les prochaines leçons.
+
+
+## Defining commands
+
+Sometimes you need a command specific to your document, either some
+functionality not found in the available packages or simply a command
+to enter a common expression that is used multiple times.
+
+The following example shows a command to produce keywords with a
+specific style applied.
+
+```
+\documentclass{article}
+\usepackage[T1]{fontenc}
+
+\newcommand\kw[1]{\textbf{\itshape #1}}
+
+\begin{document}
+
+Something about \kw{apples} and \kw{oranges}.
+
+\end{document}
+```
+
+In the definition `#1` denotes the first argument that is supplied
+(`apples` or `oranges` in this example). You may have up to nine
+arguments, but it is usually best to have just one argument, or
+sometimes none at all.
+
+Defining commands does not just reduce the typing required to produce
+a document. It helps to separate out the styling information. If it is
+decided to use a different style for keywords, rather than having to
+edit the entire document, you simply need to use a different
+definition. Here we load the `xcolor` package to provide colors, and
+use blue in place of bold in the formatting.
+
+```
+\documentclass{article}
+\usepackage[T1]{fontenc}
+
+\usepackage{xcolor}
+
+\newcommand\kw[1]{\textcolor{blue}{\itshape #1}}
+
+\begin{document}
+
+Something about \kw{apples} and \kw{oranges}.
+
+\end{document}
+```
+
+Beware that defining too many commands or defining commands with
+multiple arguments may make the document source harder  to understand
+as it is using an unfamilar syntax. The ability to define
+document-specific commands should be used with care.
 
 
 ## Travaux pratiques
@@ -113,3 +168,5 @@ définir séparément les marges `top` (supérieure), `bottom` (inférieure), `l
 Essayez de charger le package `lipsum` et ajoutez ensuite la commande `\lipsum`
 à votre document. Vous devinez pourquoi ce package est utile pour concevoir des
 exemples ?
+
+Try altering the definition of `\kw` to achieve a different style.
