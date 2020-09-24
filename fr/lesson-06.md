@@ -100,14 +100,16 @@ les hyperliens, pour l'utilisation avancée de la couleur, etc. Nous verrons
 quelques packages courants dans les prochaines leçons.
 
 
-## Defining commands
+## Definir des commandes
 
-Sometimes you need a command specific to your document, either some
-functionality not found in the available packages or simply a command
-to enter a common expression that is used multiple times.
+Parfois, on a besoin d'une commande spécifique à son document, que ce soit une
+fonctionnalité qui n'existerait pas dans les packages disponibles, ou simplement
+un raccourci pour saisir une expression qui revient plusieurs fois dans le
+document.
 
-The following example shows a command to produce keywords with a
-specific style applied.
+L'exemple suivant montre l'ajout de la commande `\kw`, pour formatter des
+mots-clefs (_**k**ey**w**ord_) avec un style spécifique (en l'occurrence du gras
+italique):
 
 ```
 \documentclass{article}
@@ -117,22 +119,23 @@ specific style applied.
 
 \begin{document}
 
-Something about \kw{apples} and \kw{oranges}.
+Tout sur les \kw{pommes} et les \kw{oranges}.
 
 \end{document}
 ```
 
-In the definition `#1` denotes the first argument that is supplied
-(`apples` or `oranges` in this example). You may have up to nine
-arguments, but it is usually best to have just one argument, or
-sometimes none at all.
+Dans la définition de la commande, `#1` désigne le premier argument passé (dans
+cet exemple, `pommes` ou `oranges`). Il peut y avoir jusqu'à neuf arguments,
+mais il est généralement préférable de n'en avoir qu'un seul, voire parfois
+aucun.
 
-Defining commands does not just reduce the typing required to produce
-a document. It helps to separate out the styling information. If it is
-decided to use a different style for keywords, rather than having to
-edit the entire document, you simply need to use a different
-definition. Here we load the `xcolor` package to provide colors, and
-use blue in place of bold in the formatting.
+La définition des commandes ne réduit pas seulement la quantité de code
+nécessaire pour produire un document. Elle permet de séparer la mise en forme et
+le contenu. Si l'on décide subitement d'utiliser un style différent pour les
+mots-clefs, plutôt que de devoir modifier l'ensemble du document, il suffira de
+changer la définition. Ici, nous chargeons le paquet `xcolor` pour mettre le
+texte en couleur, et utilisons le bleu à la place du gras dans le style des
+mots-clefs:
 
 ```
 \documentclass{article}
@@ -144,15 +147,15 @@ use blue in place of bold in the formatting.
 
 \begin{document}
 
-Something about \kw{apples} and \kw{oranges}.
+Tout sur les \kw{pommes} et les \kw{oranges}.
 
 \end{document}
 ```
 
-Beware that defining too many commands or defining commands with
-multiple arguments may make the document source harder  to understand
-as it is using an unfamilar syntax. The ability to define
-document-specific commands should be used with care.
+Attention : définir trop de commandes ou définir des commandes avec de nombreux
+arguments peut rendre le code-source du document plus difficile à comprendre,
+car la syntaxe devient moins familière. La possibilité de définir des commandes
+spécifiques à un document doit être utilisée avec mesure.
 
 
 ## Travaux pratiques
@@ -169,4 +172,4 @@ Essayez de charger le package `lipsum` et ajoutez ensuite la commande `\lipsum`
 à votre document. Vous devinez pourquoi ce package est utile pour concevoir des
 exemples ?
 
-Try altering the definition of `\kw` to achieve a different style.
+Essayez de modifier la définition de `\kw` pour obtenir un style différent.
